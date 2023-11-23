@@ -32,7 +32,7 @@ const loginpost = async(req, res)=>{
     let token = jwt.sign({id:find.id},"kjgiuregfdlkgrtui")
     console.log(token);
 
-    res.cookie('token',token).send("welcome 3")
+    res.cookie('token',token).redirect('/todo')
 
 }
 module.exports={home,register,registerpost,login,loginpost}
