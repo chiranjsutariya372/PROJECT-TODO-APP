@@ -30,6 +30,21 @@ const loginpost = async(req, res)=>{
     let token=jwt.sign({id:find.id},"kdshfdiufyerifcdkfh")
     console.log(token);
 
-    res.cookie("token",token).redirect("/home")
+    res.cookie("token",token).redirect("/blog")
 }
-module.exports={home,register,registerpost,login,loginpost}
+const blog=(req,res)=>{
+    res.render("blog")
+}
+const blogpost=async(req,res)=>{
+    req.user.blog.push(req.body)
+    await user.findByIdAndUpdate(req.user.id,req.user)
+    console.log(req.body);
+    res.redirect("/blogpage")
+}
+const blogpage=async(req,res)=>{
+    const show=await user.findOne(req.user) 
+    res.status(200).json({
+        Blog: (show.map((item) => (req) ? item.blog : ''))
+    })
+}
+module.exports={home,register,registerpost,login,loginpost,blog,blogpost,blogpage}
