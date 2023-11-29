@@ -2,6 +2,7 @@ const express=require('express');
 const connect = require('./config/db');
 const app = require('./Router/routers');
 const cookieparser= require('cookie-parser');
+const blogs = require('./Router/Blog');
 const route=express()
 
 route.set("view engine","ejs")
@@ -12,7 +13,7 @@ route.use(express.json())
 route.use(cookieparser())
 
 route.use(app)
-
+route.use(blogs)
 
 route.listen(8090,()=>{
     console.log("listening on 8090");

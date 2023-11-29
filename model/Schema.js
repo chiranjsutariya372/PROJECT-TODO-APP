@@ -2,8 +2,7 @@ const mongoose= require('mongoose');
 const userSchema=mongoose.Schema({
     username:String,
     email:String,
-    password:String,
-    blog:Array
+    password:String
 })
 const user=mongoose.model('Diwali_project', userSchema)
 
